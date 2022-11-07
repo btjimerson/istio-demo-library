@@ -1,8 +1,3 @@
-aspen-mesh-controlplane:
-  clusterId: cluster2
-  userAuth:
-    type: none
-
 #In order to make the application service callable from any cluster, the DNS lookup must succeed in each cluster
 #This provides DNS interception for all workloads with a sidecar, allowing Istio to perform DNS lookup on behalf of the application.
 meshConfig:

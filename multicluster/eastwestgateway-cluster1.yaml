@@ -4,7 +4,7 @@ metadata:
   labels:
     app: istio-eastwestgateway
     istio: eastwestgateway
-    topology.istio.io/network: network2
+    topology.istio.io/network: network1
   name: cross-network-gateway
   namespace: istio-system
 spec:

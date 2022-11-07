@@ -29,7 +29,7 @@ istioctl x create-remote-secret --name=cluster2 >> secret-cluster2.yaml
 
 kubectl apply -f secret-cluster2.yaml
 
-kubectl apply -f expose-services.yaml
+kubectl apply -f eastwestgateway-cluster1.yaml
 ```
 
 Cluster 2:
@@ -37,7 +37,7 @@ Cluster 2:
 ```
 kubectl create ns istio-system
 
-kubectl label ns istio-system topology.istio.io/network=network1
+kubectl label ns istio-system topology.istio.io/network=network2
 
 kubectl create secret generic cacerts -n istio-system --from-file=certs/cluster2/ca-cert.pem --from-file=certs/cluster2/ca-key.pem --from-file=certs/cluster2/root-cert.pem --from-file=certs/cluster2/cert-chain.pem 
 
@@ -51,7 +51,7 @@ helm install istio-egress <istio-directory>/manifests/charts/gateways/istio-egre
 
 kubectl apply -f secret-cluster1.yaml
 
-kubectl apply -f expose-services.yaml
+kubectl apply -f eastwestgateway-cluster2.yaml
 ```
 
 ## Verify installation
@@ -65,7 +65,7 @@ kubectl label ns sample istio-injection=enabled
 
 kubectl apply -l service=helloworld -n sample -f <istio-directory>/samples/helloworld/helloworld.yaml
 
-kubectl apply -n sample -l version=v1 -f /Users/jimerson/istio/istio-1.9.5-am1/samples/helloworld/helloworld.yaml 
+kubectl apply -n sample -l version=v1 -f <istio-directory>/samples/helloworld/helloworld.yaml 
 
 ```
 
